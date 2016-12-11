@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+
+    <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+ 
+</head>
+
+<body>
+
+    <div ng-app="testApp" ng-controller="testController">
+        
+        {{ setMessage('This is Sachin') }}
+             
+        {{ printMessage()}}
+
+    </div>
+    
+    <div id="module2" ng-app="testApp" ng-controller="testController">
+        
+        {{ setMessage('This is Riyansh') }}
+             
+        {{ printMessage()}}
+
+    </div>
+
+    
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', []);
+
+    app.controller('testController', function($scope, testService) {
+
+            $scope.setMessage = function(message){
+                testService.set(message);   
+            }  
+            
+             $scope.printMessage = function(){
+                testService.print();
+            }
+        })
+    
+   
+    app.service('testService', function()
+               {
+                    var message;
+                    this.set = function(message1){
+                        message = message1;
+                    } 
+                    
+                    this.print = function()
+                    {
+                        console.log(message);
+                    }
+                    
+                })
+    
+     angular.bootstrap(document.getElementById("module2"), ['testApp']);
+</script>
+</body>
+
+</html>
+

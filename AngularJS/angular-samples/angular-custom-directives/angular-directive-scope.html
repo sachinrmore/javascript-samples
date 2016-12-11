@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <link href="../styles/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../styles/font-awesome.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-social.css" rel="stylesheet">
+    <link href="../styles/mystyles.css" rel="stylesheet">
+    <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+ 
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="testController">
+
+              <div  hello-World>
+                  
+                
+              </div>
+       </div>
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', []);
+
+    app.controller('testController', function($scope) {
+
+   
+           $scope.name = 'This is set in controller'; 
+
+    
+        })
+    
+    app.directive('helloWorld', function(){
+        
+        return {
+                    restrict: 'EA',   //E = element, A = attribute, C = class, M = comment  
+            
+                    //When scope=true is set in directive that is inherited scope. It creates new scope for directive but it still access data from //parent scope
+                    // when scope is not defined then it uses scope of the element on which directive is applied.
+                    scope : true,
+                    
+                    template : '<span>{{name}}</span>'
+                    
+                }
+    })
+
+</script>
+</body>
+
+</html>
+

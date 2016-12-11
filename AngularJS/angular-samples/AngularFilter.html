@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="confusionApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+    <title>Ristorante Con Fusion: Menu</title>
+        <!-- Bootstrap -->
+
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="styles/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+ 
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="menuController as menuCtrl">
+
+              <div class="col-xs-12">
+
+              	<span>{{ number1 | currency}}</span> <br>
+            		<span>{{ "LOWERCASE" | lowercase}}</span> <br>
+            		<span>{{ "uppercase" | uppercase}}</span> <br>
+                <span>{{ todayDate | date:'dd-MM-yyyy' }}</span>  <br>
+                <span>{{ 12356.456 | number}}</span> <br>
+
+                <!--Allows you to convert a JavaScript object into JSON string. -->
+                 {{ {'name':'value'} | json }}
+
+                <ul ng-repeat="leap in years | limitTo : 3">
+                <li>{{leap}}</li> 
+                </ul>
+                <br><br>
+
+                <!-- Custom filter defined at module level-->
+                <span>{{ "uppercase" | makeUppercase}}</span> <br>
+
+                <!-- descending order-->
+                <table>
+                <tr ng-repeat="friend in friends | orderBy:'-age'">
+                <td>{{friend.name}} </td>
+                <td>{{friend.phone}} &nbsp;</td>
+                <td>{{friend.age}} </td> 
+                </tr>
+                </table>
+                <br><br>
+
+                <!-- filter with multiple clauses-->
+                <table>
+                <tr ng-repeat="friend in friends | filter:{name:'John', age:20}">
+                <td>{{friend.name}} </td>
+                <td>{{friend.phone}} &nbsp;</td>
+                <td>{{friend.age}} </td> 
+                </tr>
+                </table>
+                <br><br>
+
+                <!-- Custom filter-->
+            	 <table>
+                <tr ng-repeat="friend in friends | filter:filterFunction">
+                <td>{{friend.name}} </td>
+                <td>{{friend.phone}} &nbsp;</td>
+                <td>{{friend.age}} </td> 
+                </tr>
+                </table>
+                <br><br>
+                <br><br>
+
+            
+               
+              </div>
+       </div>
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('confusionApp', []);
+
+      app.filter('makeUppercase', function () {
+                  return function (item) {
+                    return item.toUpperCase();
+                  };
+                });
+
+    app.controller('menuController', function($scope) {
+
+   			$scope.number1 = 12.23;
+  
+  			$scope.years = [ 2000,2002,2004,2006,2008];
+
+
+        $scope.todayDate = new Date();
+
+   			$scope.filterFunction = function(element){
+   				return element.name == "John" ? true : false;
+   			};
+
+        $scope.friends =
+         [{name:'John', phone:'555-1212', age:10},
+         {name:'Mary', phone:'555-9876', age:19},
+         {name:'Mike', phone:'555-4321', age:21},
+         {name:'Adam', phone:'555-5678', age:35},
+         {name:'Julie', phone:'555-8765', age:29},
+         {name:'John', phone:'555-1212', age:20},
+         {name:'John', phone:'555-1212', age:30}
+         ];
+    
+        })
+    
+
+</script>
+</body>
+
+</html>
+

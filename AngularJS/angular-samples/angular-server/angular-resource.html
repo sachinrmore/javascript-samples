@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+    <script src="../angular-1.5.3/angular-1.5.3/angular-resource.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="testController">
+
+              <div class="col-xs-12">
+
+            
+              </div>
+       </div>
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', ['ngResource']);
+
+    app.controller('testController', function($scope, $resource) {
+
+            
+            var resourceObject = $resource("Employee.json");
+        
+             $scope.emp =  resourceObject.get();
+             $scope.emp.$save();
+    
+        })
+    
+    //When a resource object receives a response from the server it automatically deserializes the response into a JavaScript object, appending the following two methods to it in the process.
+    //$save([params], [success], [error]) - POSTs the object back to the endpoint, saving changes
+    //$remove([params], [success], [error]) - DELETEs the object
+
+</script>
+</body>
+
+</html>
+

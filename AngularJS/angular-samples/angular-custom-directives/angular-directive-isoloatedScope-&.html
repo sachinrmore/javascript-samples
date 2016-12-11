@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <link href="../styles/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../styles/font-awesome.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-social.css" rel="stylesheet">
+    <link href="../styles/mystyles.css" rel="stylesheet">
+    <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+ 
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="testController">
+
+           
+              <div  hello-World print-message="print()">            
+              </div>
+       </div>
+        
+         <div class="row row-content" ng-controller="myController">
+             
+              <hello-World print-message="print()">            
+             
+       </div>
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', []);
+
+    app.controller('testController', function($scope) {
+
+           $scope.print =  function() { return "Hello Sachin";}
+
+        })
+    
+    app.controller('myController', function($scope) {
+
+               $scope.print =  function() { return "Hello Rishita";}
+
+        })
+    
+    app.directive('helloWorld', function(){
+        
+        return {
+                    restrict: 'EA',   //E = element, A = attribute, C = class, M = comment  
+            
+                 
+                    scope : {                        
+                               printMessage : '&'  //Call an expression (function) on the parent scope from the isolated scope 
+                            },
+                    
+                    template : '<span>{{printMessage()}}</span>'
+                    
+                }
+    })
+
+</script>
+</body>
+
+</html>
+

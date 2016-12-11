@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <link href="../styles/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../styles/font-awesome.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-social.css" rel="stylesheet">
+    <link href="../styles/mystyles.css" rel="stylesheet">
+    <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+ 
+</head>
+
+<body ng-controller="testController">
+
+    <div class="container">
+       
+        {{print()}}
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', []);
+
+    app.controller('testController', function($scope, $timeout, $log, $window) {
+
+               $timeout(function(){
+                                console.log('deplayed by 2 sec');
+                            }, 2000);
+        $scope.print = function()
+        {
+            $log.error('This is an error');
+            $log.warn('This is an warning');
+    
+            $window.alert('Hello Sachin');
+        }
+    
+    });
+                   
+</script>
+</body>
+
+</html>
+

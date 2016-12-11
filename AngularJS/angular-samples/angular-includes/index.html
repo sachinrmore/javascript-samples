@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <title></title>
+     
+
+  
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+ 
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="testController">
+
+              <div class="col-xs-12">
+
+              <ng-include ng-src="{{headerURL}}"></ng-include>
+              <ng-include ng-src="'details.html'"></ng-include>
+              <ng-include src="footer.html"></ng-include>
+              </div>
+       </div>
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', []);
+
+    app.controller('testController', function($scope) {
+
+          $scope.headerURL = "header.html";
+        })
+    
+
+</script>
+</body>
+
+</html>
+

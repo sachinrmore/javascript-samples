@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <link href="../styles/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../styles/font-awesome.min.css" rel="stylesheet">
+    <link href="../styles/bootstrap-social.css" rel="stylesheet">
+    <link href="../styles/mystyles.css" rel="stylesheet">
+    <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+ 
+</head>
+
+<body >
+
+    <!-- Javascript Expression-->
+    
+    <script type="text/javascript">
+        
+        a = 20, b= 30;
+        
+        console.log("Javascript Expression")
+        console.log(5 + 6);
+        console.log(a + b);
+        console.log(a + c);    <!-- javascript expression throws error when object is undefined or null-->
+        
+    </script>    
+    
+    <!-- Angular Expression-->
+    
+    <div ng-controller="testController">
+        
+        <span>{{ 2 + 3 }}</span>
+        <span>{{ a + b }}</span>  
+        <span>{{print()}}</span>
+        <span>{{a.b}}</span>       <!-- angular expression is forgiving when object is undefined or null-->
+        
+        
+        <!-- Angular expressions do not have access to global variables like window, document or location. This restriction is intentional. It prevents accidental access to the global state-->
+        
+        <span>{{window.alert('Hello world')}}</span>
+        <span>{{helloFunction()}}</span>
+        
+        <br>
+        <span ng-bind="a+b"></span>
+        <span ng-bind="3+5"></span>
+        <span ng-bind="print()"></span>
+        
+        <br>
+        
+        <span>{{::name}}</span>  <!-- one time binding-->
+       <button ng-click="setName()">Set Name</button>
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', []);
+
+    app.controller('testController', function($scope) {
+
+        $scope.a = 10;
+        $scope.b = 20;
+  
+        $scope.print = function()
+        {
+           console.log('print');
+        }
+    
+        $scope.helloFunction = function(){
+                //window.alert('Hello world')
+        }
+        
+         $scope.name = "Sachin";
+        
+        $scope.setName = function()
+        {
+            $scope.name = "more";
+        }
+        })
+    
+       
+    
+
+</script>
+</body>
+
+</html>
+

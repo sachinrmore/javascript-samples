@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="testController">
+
+              <div class="col-xs-12">
+
+            
+              </div>
+       </div>
+    </div>
+
+
+<script type="text/javascript">
+    
+    var app = angular.module('testApp', []);
+
+    app.controller('testController', function($scope, $http) {
+
+          successCallback = function(response) { 
+            console.log(response.data);
+            console.log("call succeed");
+          }
+
+          errorCallback = function(response) {
+            console.log(response.status + " " + response.statusText);
+            console.log("call failed");
+          }
+
+//          $http.get('Students.json')
+//          .then(successCallback, errorCallback);
+//  
+          $http({
+              method : 'GET',
+              url: 'Students.json'
+          }).then(successCallback, errorCallback);
+            
+    
+        })
+    
+
+</script>
+</body>
+
+</html>
+

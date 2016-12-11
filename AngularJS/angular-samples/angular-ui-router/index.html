@@ -1,0 +1,124 @@
+<!-- index.html -->
+    <!DOCTYPE html>
+    <html ng-app="scotchApp">
+    <head>
+      <!-- SCROLLS -->
+      <!-- load bootstrap and fontawesome via CDN -->
+      <link rel="stylesheet" href="../styles/bootstrap.min.css" />
+      <link rel="stylesheet" href="../styles/font-awesome.min.css" />
+
+      <!-- SPELLS -->
+      <!-- load angular and angular route via CDN -->
+      <script src="../angular-1.5.3/angular-1.5.3/angular.js"></script>
+      <script src="../angular-1.5.3/angular-1.5.3/angular-ui-router.js"></script>
+      
+    </head>
+    <body ng-controller="mainController">
+
+        <!-- HEADER AND NAVBAR -->
+        <header>
+            <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Angular UI-Router Example</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a ui-sref="about"><i class="fa fa-shield"></i> About</a></li>
+                   
+                </ul>
+            </div>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT AND INJECTED VIEWS -->
+        <div id="main">
+
+             <!-- angular templating -->
+            <!-- this is where content will be injected -->
+            
+            <div ui-view></div>
+
+        </div>
+
+        <script type="application/javascript">
+        
+                var scotchApp = angular.module('scotchApp',['ui.router']);
+            
+                scotchApp.config(function($stateProvider, $urlRouterProvider){
+                    
+                    $stateProvider
+                    .state('home', {
+                            url: '/home',
+                            templateUrl: 'partial-home.html'
+                        })
+
+                   .state('home.list', {
+                        url: '/list',
+                        templateUrl: 'partial-home-list.html',
+                        controller: function($scope) {
+                            $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+                        }
+                    })
+
+                    // nested list with just some random string data
+                    .state('home.paragraph', {
+                        url: '/paragraph',
+                        template: 'I could sure use a drink right now.'
+                    })
+                    
+                     // multiple view on the same page
+                    .state('about', {
+                            url: '/about',
+                            views: {
+
+                                // the main template will be placed here (relatively named)
+                                '': { templateUrl: 'partial-about.html' },
+
+                                // the child views will be defined here (absolutely named)
+                                'columnOne@about': { template: 'Look I am a column one' },
+
+                                // for column two, we'll define a separate controller 
+                                'columnTwo@about': { 
+                                    template: 'Look I am column two',
+                                    controller: 'aboutController'
+                                }
+                            }
+
+                        });
+                    
+                     $urlRouterProvider.otherwise('/');
+                });
+                    
+                
+            
+                scotchApp.controller('mainController', function($scope){
+                    
+                    $scope.message = "Hello World";
+                    
+                  
+                })
+                
+                 scotchApp.controller('aboutController', function($scope){
+                    
+                       $scope.scotches = [
+                                        {
+                                            name: 'Macallan 12',
+                                            price: 50
+                                        },
+                                        {
+                                            name: 'Chivas Regal Royal Salute',
+                                            price: 10000
+                                        },
+                                        {
+                                            name: 'Glenfiddich 1937',
+                                            price: 20000
+                                        }
+                                    ];
+                })
+                 
+                 
+        </script>
+    </body>
+    </html>
