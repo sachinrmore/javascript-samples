@@ -12,7 +12,7 @@ catch(err){
     console.log(err.message);
 }
 finally{
-    "finally block executed."
+    console.log("finally block executed.");
 }
 
 try    {
@@ -24,6 +24,6 @@ catch(err){
     console.log(err);
 }
 finally{
-    "finally block executed."
+    console.log("finally block executed.");
 }
     

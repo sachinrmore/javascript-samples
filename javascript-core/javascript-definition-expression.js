@@ -2,6 +2,7 @@
 
 a1();
 
+// line start with "function" keyword is function defintion or declaration
 //Function Declarations are parsed at pre-execution stage, when the browser prepares to execute the code. so we can access the function before it is declared.
 function a1(c) {
 
